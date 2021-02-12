@@ -34,4 +34,10 @@ public class LoginController {
 		// 없으면 로그인 주소 빼고 main
 		return "redirect:/";
 	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 }
