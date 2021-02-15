@@ -40,8 +40,12 @@
 			<form:errors path="userPh1"/><br />
 	연락처2 : <form:input path="userPh2" /><br />
 	관심분야 : 
-		<!-- split을 이용해서 데이터를 배열로 가져와 foreach문 사용 -->
-		<c:set var="interestArr" value="${fn:split(memberCommand.interest,'`')}" />
+		<c:set var="interestArr" value="${memberCommand.interest }"/>
+		<!-- ` 가 없으면 배열이 아님 -->
+		<c:if test="${fn:contains(memberCommand.interest,'`') }">
+			<!-- split을 이용해서 데이터를 배열로 가져와 foreach문 사용 -->
+			<c:set var="interestArr" value="${fn:split(memberCommand.interest,'`')}" />
+		</c:if>
 		<!-- 배열값을 하나씩 받아오겠다 -->
 		<input type="checkbox" name="interest" value="HTML" 
 			<c:forEach items="${ interestArr}" var="interest">
