@@ -8,8 +8,10 @@
 		"
 >
 	<bean class="controller.member.MemberController"/>
+	<bean class="controller.member.MemberInfoController"/>
 	<bean class="service.member.MemberJoinService" id="memberJoinService"/>
 	<bean class="repository.member.MemberRepository" id="memberRepository"/>
 	<bean class="controller.MailService" id="mailService"/>
 	<bean id="authService" class="service.auth.AuthService" />
+	<bean id="memberInfoService" class="service.member.MemberInfoService" />
 </beans>

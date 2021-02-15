@@ -24,4 +24,8 @@ public class MemberRepository {
 		statement = namespace + ".joinOkUpdate";
 		return sqlSession.update(statement, memberDTO);
 	}
+	public Integer updateMember(MemberDTO memberDTO) {
+		statement = namespace + ".updateMember";
+		return sqlSession.update(statement, memberDTO);
+	}
 }
