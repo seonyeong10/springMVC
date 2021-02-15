@@ -36,7 +36,7 @@
 </form:form>
 </c:if >
 <c:if test="${!empty authInfo}">
-내정보 | 
+<a href="mem/memberDetail">내정보</a> | 
 <a href='<c:url value="/login/logout" />'>로그아웃</a>  | 
 회원리스트 | 공지사항 | 자료실 | 상품목록 | 설문조사 | 설문지 등록 | ajaxTest
 </c:if >

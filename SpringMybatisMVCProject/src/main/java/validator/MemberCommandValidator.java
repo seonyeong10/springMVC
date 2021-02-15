@@ -60,7 +60,7 @@ public class MemberCommandValidator implements Validator {
 		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "required"); // 유효성 검사(공백문자가 있어서는 안됨)
 		ValidationUtils.rejectIfEmpty(errors, "userPw", "required"); // 유효성 검사(공백문자 가능)
-		ValidationUtils.rejectIfEmpty(errors, "userPwCon", "required");
+//		ValidationUtils.rejectIfEmpty(errors, "userPwCon", "required");
 		ValidationUtils.rejectIfEmpty(errors, "userName", "required");
 		ValidationUtils.rejectIfEmpty(errors, "userPh1", "required");
 		ValidationUtils.rejectIfEmpty(errors, "userPh2", "required");

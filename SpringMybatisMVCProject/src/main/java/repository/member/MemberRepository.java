@@ -27,7 +27,12 @@ public class MemberRepository {
 
 	public MemberDTO selectByMember(MemberDTO memberDTO) {
 		statement = namespace + ".selectMember";
-		// mybatis도 preparedstatement 구문 내부적으로 사용하고 있음
 		return sqlSession.selectOne(statement, memberDTO);
 	}
+	
+	public Integer updateMember(MemberDTO memberDTO) {
+		statement = namespace + ".updateMember";
+		return sqlSession.update(statement, memberDTO);
+	}
+	
 } 

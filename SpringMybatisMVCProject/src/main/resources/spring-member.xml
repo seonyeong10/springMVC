@@ -11,4 +11,6 @@
 	<bean id="memberRepository" class="repository.member.MemberRepository" />
 	<bean id="mailService" class="controller.MailService"/>
 	<bean id="authService" class="service.auth.AuthService" />
+	<bean class="controller.member.MemberInfoController" />
+	<bean id="memberInfoService" class="service.member.MemberInfoService" />
 </beans>
