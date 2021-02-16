@@ -52,4 +52,13 @@
 	</trim>
 	where user_id = #{userId}
 </update>
+<update id="updateMemberPw" parameterType="mem">
+	update member
+	set user_pw = #{userPw}
+	where user_id = #{userId}
+</update>
+<delete id="deleteMember" parameterType="mem">
+	delete from member
+	where user_id = #{userId}
+</delete>
 </mapper>

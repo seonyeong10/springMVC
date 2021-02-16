@@ -33,10 +33,15 @@
 취미 : ${memberCommand.interest } <br />
 <p>
 	<a href="memberModify">내정보 수정</a> | 
-	비밀번호 변경 | 
-	탈퇴 | 
-	홈으로
+	<a href="javascript:pwForm();">비밀번호 변경</a> | 
+	<a href="memberDel">탈퇴</a> | 
+	<a href="<c:url value='/'/>" >홈으로</a>
 </p>
 
 </body>
+<script type="text/javascript">
+	function pwForm(){
+		location.href="<c:url value='/mem/memberPwForm'/>";
+	}
+</script>
 </html>
