@@ -28,4 +28,12 @@ public class MemberRepository {
 		statement = namespace + ".updateMember";
 		return sqlSession.update(statement, memberDTO);
 	}
+	public Integer updatePassword(MemberDTO memberDTO) {
+		statement = namespace + ".updatePassword";
+		return sqlSession.update(statement, memberDTO);
+	}
+	public Integer deleteMember(MemberDTO memberDTO) {
+		statement = namespace + ".deleteMember";
+		return sqlSession.update(statement, memberDTO);
+	}
 }

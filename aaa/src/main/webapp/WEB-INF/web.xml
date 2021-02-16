@@ -32,6 +32,7 @@
 				classpath:spring-jdbc.xml
 				classpath:mybatis-config.xml
 				classpath:spring-mail-config.xml
+				classpath:spring-edit-member.xml
 			</param-value>
 		</init-param>
 	</servlet>

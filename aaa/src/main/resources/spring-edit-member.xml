@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	<bean class="controller.edit.MemberEditController"/>
+	<bean id="memberPwConService" class="service.pw.MemberPwConService"/>
+	<bean id="memberOldPwConService" class="service.pw.MemberOldPwConService"/>
+	<bean id="memberDelService" class="service.pw.MemberDelService"/>
+	<bean id="memberListService" class="service.edit.MemberListService"/>
+	<bean id="memberEditRepository" class="repository.edit.MemberEditRepository"/>
+</beans>

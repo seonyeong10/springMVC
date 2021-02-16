@@ -47,7 +47,8 @@
 <c:if test="${!empty authInfo}">
 	<a href="mem/memberInfo">내정보</a> | 
 	<a href="<c:url value='/login/logout' />">로그아웃</a> | 
-	회원리스트 | 공지사항 | 자료실 | 상품목록 | 설문조사 | 설문지 등록 | ajaxTest
+	<a href="edit/memberList">회원리스트</a> | 
+	공지사항 | 자료실 | 상품목록 | 설문조사 | 설문지 등록 | ajaxTest
 </c:if>
 </body>
 </html>

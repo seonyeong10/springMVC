@@ -36,8 +36,8 @@
 
 
 <a href="memberModify">내정보 수정</a> |
-비밀번호 변경 |
-탈퇴 |
+<a href="<c:url value='/mem/pwForm'/>">비밀번호 변경</a> |
+<a href="memberDel">탈퇴</a> |
 <a href="<c:url value='/main' />">홈으로</a>
 </body>
 </html>
