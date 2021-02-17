@@ -8,5 +8,7 @@
 	<bean class="controller.edit.MemberEditController" />
 	<bean id="memberListService" class="service.edit.MemberListService" />
 	<bean id="memberEditRepository" class="repository.member.MemberEditRepository" />
-	
+	<bean id="memberDetailService" class="service.edit.MemberDetailService" />
+	<bean id="memberModifyProService" class="service.edit.MemberModifyProService" />
+	<bean id="memberDeleteProService" class="service.edit.MemberDeleteProService" />
 </beans>

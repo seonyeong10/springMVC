@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import model.DTO.MemberDTO;
+import model.DTO.StartEndPageDTO;
 
 public class MemberEditRepository {
 	@Autowired
@@ -13,7 +14,7 @@ public class MemberEditRepository {
 	private final String namespace = "mapper.edit.memberEditMapper";
 	private String statement = "";
 	
-	public List<MemberDTO> getMemberList(){
+	public List<MemberDTO> getMemberList(MemberDTO memberDTO){
 		statement = namespace + ".selectMember";
 		return sqlSession.selectList(statement);
 	}
@@ -22,4 +23,10 @@ public class MemberEditRepository {
 		statement = namespace + ".selectCount";
 		return sqlSession.selectOne(statement);
 	}
+
+	public Integer deleteMember(String userId) {
+		statement = namespace + ".deleteMember";
+		return sqlSession.update(statement, userId);
+	}
+
 }

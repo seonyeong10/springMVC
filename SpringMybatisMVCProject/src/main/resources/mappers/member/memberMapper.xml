@@ -42,13 +42,15 @@
 	<trim prefix="set" suffixOverrides=",">
 		user_addr = #{userAddr},
 	 	user_ph1 = #{userPh1},
-	 	<if test="userAddr != null">
+	 	<if test="userPh2 != null">
 			user_ph2 = #{userPh2}, 
 		</if>
-		<if test="userAddr == null">
+		<if test="userPh2 == null">
 			user_ph2 = null, 
+		</if>
+		<if test="interest != null">
+			interest = #{interest}
 		</if> 
-	 	interest = #{interest}
 	</trim>
 	where user_id = #{userId}
 </update>

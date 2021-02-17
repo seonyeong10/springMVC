@@ -23,12 +23,31 @@
 		<arg column="chk_ok" javaType="string" />
 	</constructor>
 </resultMap>
-<select id="selectMember" resultMap="baseMember">
-	select <include refid="baseColumn" />
-	from member
-	order by user_regist desc
+<select id="selectMember" resultMap="baseMember" parameterType="mem">
+	select *
+	from (select ROWNUM RN, <include refid="baseColumn" />
+		from (select <include refid="baseColumn" /> 
+			from member
+			<trim prefix="where" prefixOverrides="AND | OR">
+				<if test="userId != null">
+					user_id = #{userId}
+				</if>
+			</trim>
+			order by user_regist DESC))
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="startEndPageDTO != null">
+			RN between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow}
+		</if>
+	</trim>
 </select>
-<select id="selectCount" resultType="int">
+<select id="selectCount" resultType="int" >
 	select count(*) from member
 </select>
+<!-- string을 비교할 땐 value로 비교한다. -->
+<delete id="deleteMember" parameterType="string">
+	<if test="value != null">
+	delete from member
+	where user_id = #{userId}
+	</if>
+</delete>
 </mapper>
