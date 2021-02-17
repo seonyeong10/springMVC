@@ -8,25 +8,36 @@
 	<resultMap type="mem" id="baseMap">
 		<constructor>
 			<idArg column="user_Id" javaType="String" />
-			<arg column="user_pw" javaType="String"/>
-			<arg column="user_name" javaType="String"/>
-			<arg column="user_gender" javaType="String"/>
-			<arg column="user_birth" javaType="java.sql.Timestamp"/>
-			<arg column="user_ph1" javaType="String"/>
-			<arg column="user_ph2" javaType="String"/>
-			<arg column="user_addr" javaType="String"/>
-			<arg column="interest" javaType="String"/>
-			<arg column="user_regist" javaType="java.sql.Timestamp"/>
-			<arg column="user_email" javaType="String"/>
-			<arg column="chk_ok" javaType="String"/>
+			<arg column="user_pw" javaType="String" />
+			<arg column="user_name" javaType="String" />
+			<arg column="user_gender" javaType="String" />
+			<arg column="user_birth" javaType="java.sql.Timestamp" />
+			<arg column="user_ph1" javaType="String" />
+			<arg column="user_ph2" javaType="String" />
+			<arg column="user_addr" javaType="String" />
+			<arg column="interest" javaType="String" />
+			<arg column="user_regist" javaType="java.sql.Timestamp" />
+			<arg column="user_email" javaType="String" />
+			<arg column="chk_ok" javaType="String" />
 		</constructor>
 	</resultMap>
-	<select id="getMemberList" resultMap="baseMap">
-		select <include refid="baseColumn" />
-		from member
-		order by user_regist desc
+	<select id="getMemberList" resultMap="baseMap" parameterType="mem">
+		select *
+		from
+		(select ROWNUM RN, <include refid="baseColumn" />
+		from
+		(select <include refid="baseColumn" /> from member order by user_regist DESC))
+		<trim prefix="where" prefixOverrides="AND | OR">
+			<if test="startEndPageDTO != null">
+				RN between #{startEndPageDTO.startDataNum} and #{startEndPageDTO.endDateNum}
+			</if>
+		</trim>
 	</select>
 	<select id="getMemberCount" resultType="int">
-		select count(*) from member
+		select count(*) from
+		member
 	</select>
+	<delete id="deleteMember" parameterType="string">
+		delete from member where user_id = #{userId}
+	</delete>
 </mapper>

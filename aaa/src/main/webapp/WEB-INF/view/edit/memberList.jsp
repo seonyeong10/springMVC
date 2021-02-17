@@ -24,12 +24,19 @@
 		<tr>
 			<td>${status.count }</td>
 			<td>${list.userName }</td>
-			<td>${list.userId }</td>
+			<td><a href="memberInfoDetail?userId=${list.userId }">${list.userId }</a></td>
 			<td>
 				<fmt:formatDate value="${list.userRegist }" type="date" pattern="yyyy-MM-dd"/>
 			</td>
 		</tr>
 		</c:forEach>
+		<tr>
+			<!-- 페이지바 -->
+			<th colspan="3">
+				<%@ include file="../include/includePage.jsp" %>
+			</th>
+			<td><a href="<c:url value='/main'/>">홈으로</a></td>
+		</tr>
 	</table>
 </form>
 </body>

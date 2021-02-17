@@ -11,4 +11,7 @@
 	<bean id="memberDelService" class="service.pw.MemberDelService"/>
 	<bean id="memberListService" class="service.edit.MemberListService"/>
 	<bean id="memberEditRepository" class="repository.edit.MemberEditRepository"/>
+	<bean id="memberDetailService" class="service.edit.MemberDetailService"/>
+	<bean id="memberEditModifyService" class="service.edit.MemberEditModifyService"/>
+	<bean id="memberEditDelService" class="service.edit.MemberEditDelService"/>
 </beans>

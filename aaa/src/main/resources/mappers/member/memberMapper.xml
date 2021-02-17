@@ -53,11 +53,16 @@
 		update member
 		<trim prefix="set" suffixOverrides=",">
 			user_ph1 = #{userPh1},
+			user_addr = #{userAddr},
 			<if test="userPh2 != null">
 				user_ph2 = #{userPh2},
 			</if>
-			user_addr = #{userAddr},
-			interest = #{interest}
+			<if test="userPh2 == null">
+				user_ph2 = null,
+			</if>
+			<if test="interest != null">
+				interest = #{interest}
+			</if>
 		</trim>			
 		where user_id = #{userId}
 	</update>

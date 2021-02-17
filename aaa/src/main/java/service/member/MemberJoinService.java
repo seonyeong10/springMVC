@@ -48,20 +48,20 @@ public class MemberJoinService {
 		
 		// 메일확인
 		// 172.30.1.59
-		if(result != null) {
-			SimpleDateFormat dateForm = new SimpleDateFormat("yyyyMMddHHmmss");
-			String num = dateForm.format(new Date());	// 스트링을 날짜로 바꿀 땐 format 반대는 parse
-			String subject = "가입환영인사";	// 메일 제목
-			String contents = "<html><body>"
-					+ "안녕하세요. '" + memberDTO.getUserName()
-					+ "'님 가입을 환영합니다.<br />"
-					+ "가입을 완료하시려면 <a href='http://172.30.1.59:8080/aaa/register/memberMail?num="+num+"&receiver="+memberDTO.getUserEmail()+"&userId="+memberDTO.getUserId()+"'>여기</a>를 눌러주세요.";
-			try {
-				mailService.sendMail(memberDTO.getUserEmail(), memberDTO.getUserId(), contents, subject);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		if(result != null) {
+//			SimpleDateFormat dateForm = new SimpleDateFormat("yyyyMMddHHmmss");
+//			String num = dateForm.format(new Date());	// 스트링을 날짜로 바꿀 땐 format 반대는 parse
+//			String subject = "가입환영인사";	// 메일 제목
+//			String contents = "<html><body>"
+//					+ "안녕하세요. '" + memberDTO.getUserName()
+//					+ "'님 가입을 환영합니다.<br />"
+//					+ "가입을 완료하시려면 <a href='http://172.30.1.59:8080/aaa/register/memberMail?num="+num+"&receiver="+memberDTO.getUserEmail()+"&userId="+memberDTO.getUserId()+"'>여기</a>를 눌러주세요.";
+//			try {
+//				mailService.sendMail(memberDTO.getUserEmail(), memberDTO.getUserId(), contents, subject);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		
 	}
 

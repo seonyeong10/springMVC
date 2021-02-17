@@ -13,15 +13,19 @@ public class MemberEditRepository {
 	private final String namespace = "mapper.member.memberEditMapper";
 	private String statement;
 	
-	public List<MemberDTO> getMemberList() {
+	public List<MemberDTO> getMemberList(MemberDTO memberDTO) {
 		statement = namespace + ".getMemberList";
-		return sqlSession.selectList(statement);
+		return sqlSession.selectList(statement, memberDTO);
 	}
 
 	public Integer getMemberCount() {
 		statement = namespace + ".getMemberCount";
 		return sqlSession.selectOne(statement);
 	}
-	
-	
+
+	public void deleteMember(String userId) {
+		statement = namespace + ".deleteMember";
+		sqlSession.delete(statement, userId);
+	}
+
 }

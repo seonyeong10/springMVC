@@ -14,4 +14,5 @@
 	<bean class="controller.MailService" id="mailService"/>
 	<bean id="authService" class="service.auth.AuthService" />
 	<bean id="memberInfoService" class="service.member.MemberInfoService" />
+	<bean id="memberDelService" class="service.member.MemberDelService" />
 </beans>
