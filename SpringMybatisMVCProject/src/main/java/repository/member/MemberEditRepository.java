@@ -16,7 +16,7 @@ public class MemberEditRepository {
 	
 	public List<MemberDTO> getMemberList(MemberDTO memberDTO){
 		statement = namespace + ".selectMember";
-		return sqlSession.selectList(statement);
+		return sqlSession.selectList(statement, memberDTO);
 	}
 	
 	public int getMemberCount() {
