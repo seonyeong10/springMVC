@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.board.boardMapper">
+<sql id="baseColumn">
+	BOARD_NUM, USER_ID, BOARD_WRITER, BOARD_SUBJECT, BOARD_CONTENT, BOARD_PW, BOARD_COUNT, IP_ADDR, board_regist
+</sql>
+<insert id="insertBoard">
+	insert into board (<include refid="baseColumn" />)
+	values (board_seq.nextval, #{userId}, #{boardWriter}, #{boardSubject}, #{boardContent}, #{boardPw}, 0, #{ipAddr}, sysdate)
+</insert>
+<resultMap type="board" id="baseMap">
+	<constructor>
+		<idArg column="BOARD_NUM" javaType="long"/>
+		<arg column="USER_ID" javaType="string"/>
+		<arg column="BOARD_WRITER" javaType="string"/>
+		<arg column="BOARD_SUBJECT" javaType="string"/>
+		<arg column="BOARD_CONTENT" javaType="string"/>
+		<arg column="BOARD_PW" javaType="string"/>
+		<arg column="BOARD_COUNT" javaType="long"/>
+		<arg column="IP_ADDR" javaType="string"/>
+		<arg column="BOARD_REGIST" javaType="java.sql.Timestamp"/>
+	</constructor>
+</resultMap>
+<select id="selectBoard" resultMap="baseMap">
+	select *
+	from (
+		select ROWNUM RN, <include refid="baseColumn" />
+		from (
+			select <include refid="baseColumn" />
+			from board
+			<if test="boardNum != null">
+				<where>
+					board_num = #{boardNum}
+				</where>
+			</if>
+			order by board_regist DESC
+		)
+	)
+	<if test="startEndPageDTO != null">
+		<where>
+			RN between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow}
+		</where>
+	</if>
+</select>
+<select id="selectCount" resultType="int">
+	select count(*) from board
+</select>
+<update id="updateBoard" parameterType="board">
+	update board
+	set board_content = #{boardContent}, board_subject = #{boardSubject}
+	where board_num = #{boardNum}
+</update>
+<delete id="deleteBoard" parameterType="long">
+	delete from board where board_num = #{boardNum}
+</delete>
+</mapper>

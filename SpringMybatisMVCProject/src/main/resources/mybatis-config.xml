@@ -4,5 +4,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="model.DTO.MemberDTO" alias="mem"/>
+		<typeAlias type="model.DTO.BoardDTO" alias="board"/>
 	</typeAliases>
 </configuration>

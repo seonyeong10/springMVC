@@ -14,4 +14,5 @@
 	<bean class="controller.member.MemberInfoController" />
 	<bean id="memberInfoService" class="service.member.MemberInfoService" />
 	<bean id="memberPwModifyService" class="service.member.MemberPwModifyService" />
+	<bean id="memberDelService" class="service.member.MemberDelService" />
 </beans>
