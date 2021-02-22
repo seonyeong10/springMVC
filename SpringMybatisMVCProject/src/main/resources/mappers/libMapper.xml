@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.lib.libMapper">
+<sql id="baseColumn">
+	BOARD_NUM, user_id, BOARD_WRITER, BOARD_SUBJECT, BOARD_CONTENT, BOARD_PW, BOARD_COUNT, IP_ADDR, ORIGINAL_FILE_NAME, STORE_FILE_NAME, FILE_SIZE, BOARD_REGIST
+</sql> 
+<insert id="insertLib" >
+	insert into library_board (<include refid="baseColumn" />)
+	values (board_seq.nextval, #{userId}, #{boardWriter}, #{boardSubject}, #{boardContent}, #{boardPw}, 0, #{ipAddr}, 
+		<if test="originalFileName != null">
+			#{originalFileName}, #{storeFileName}, #{fileSize}
+		</if>
+		<if test="originalFileName == null">
+			null, null, null
+		</if>
+		 , sysdate)
+</insert>
+<resultMap type="lib" id="baseMap">
+	<id column="BOARD_NUM" jdbcType="BIGINT" property="boardNum"/>
+	<id column="USER_ID" jdbcType="VARCHAR" property="userId"/>
+	<result column="BOARD_WRITER" jdbcType="VARCHAR" property="boardWriter"/>
+	<result column="BOARD_SUBJECT" jdbcType="VARCHAR" property="boardSubject"/>
+	<result column="BOARD_CONTENT" jdbcType="VARCHAR" property="boardContent"/>
+	<result column="BOARD_PW" jdbcType="VARCHAR" property="boardPw"/>
+	<result column="BOARD_COUNT" jdbcType="BIGINT" property="boardCount"/>
+	<result column="IP_ADDR" jdbcType="VARCHAR" property="ipAddr"/>
+	<result column="board_regist" jdbcType="TIMESTAMP" property="boardRegist"/>
+	<result column="ORIGINAL_FILE_NAME" jdbcType="VARCHAR" property="originalFileName"/>
+	<result column="STORE_FILE_NAME" jdbcType="VARCHAR" property="storeFileName"/>
+	<result column="FILE_SIZE" jdbcType="VARCHAR" property="fileSize"/>
+</resultMap>
+<select id="selectLib" resultMap="baseMap">
+	select *
+	from (
+		select ROWNUM RN, <include refid="baseColumn" />
+		from (
+			select <include refid="baseColumn" />
+			from library_board
+			<where>
+				<if test="boardNum != null">
+					board_num = #{boardNum}
+				</if>
+			</where>
+			order by board_regist DESC
+		)
+	)
+	<if test="startEndPageDTO != null">
+		where RN between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow}
+	</if>
+</select>
+<select id="selectCount" resultType="int">
+	select count(*) from library_board
+</select>
+<update id="updateLib" parameterType="lib">
+	update library_board
+	set board_content = #{boardContent}, board_subject = #{boardSubject}
+	where board_num = #{boardNum}
+</update>
+<delete id="deleteLib" parameterType="long">
+	delete from library_board
+	where board_num = #{boardNum}
+</delete>
+</mapper>

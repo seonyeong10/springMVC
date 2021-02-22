@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+      http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      ">
+	<bean class="controller.lib.LibController"/>
+	<bean id="libWriteService" class="service.lib.LibWriteService"/>
+	<bean id="LibRepository" class="repository.lib.LibRepository"/>
+	<bean id="libListService" class="service.lib.LibListService"/>
+	<bean id="libInfoService" class="service.lib.LibInfoService"/>
+	<bean id="libModifyService" class="service.lib.LibModifyService"/>
+	<bean id="libDeleteService" class="service.lib.LibDeleteService"/>
+	<bean id="fileDeleteService" class="service.lib.FileDeleteService"/>
+</beans>
